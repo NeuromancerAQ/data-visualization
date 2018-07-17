@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/guangdong.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <style>
+        html,body{ overflow-y:hidden;}
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+        .box{
+            width: 1366px;
+            height: 768px;
+            border: 1px solid #000;
+            background: url("imgs/304050.jpg");
+            background-size: cover;
+        }
+        .top{
+            width: 1366px;
+            height: 70px;
+            float: left;
+            margin-top: 10px;
+        }
+
+        .top>a{
+            color: white;
+            font-size: 30px;
+            text-decoration: none;
+            margin-left: 482px;
+        }
+        .left_top,.left_bottom{
+            width: 350px;
+            height: 320px;
+            border: 1px solid #4dcbe1;
+            margin-top: 70px;
+            position: absolute;
+        }
+        .left_bottom{
+            position: absolute;
+            top:360px;
+        }
+        .center{
+            width: 600px;
+            height: 450px;
+            border: 1px solid #4dcbe1;
+            left: 380px;
+            top: 70px;
+            position: absolute;
+            padding-bottom: 10px;
+        }
+        .center_bottom{
+            width: 600px;
+            height: 200px;
+            border: 1px solid #4dcbe1;
+            position: absolute;
+            left: 380px;
+            top: 550px;
+        }
+        .right_top{
+            width: 333px;
+            height: 500px;
+            border: 1px solid #4dcbe1;
+            position: absolute;
+            right:0;
+            top:70px;
+        }
+        .right_bottom{
+            width: 333px;
+            height: 150px;
+            border: 1px solid #4dcbe1;
+            position: absolute;
+            right:0;
+            bottom:17px;
+        }
+        .right_bottom>p{
+            text-align: center;
+            font-size: 20px;
+            color: red;
+        }
+        .wrap{padding:0 10px 5px 30px; width:330px;margin:20px auto;color:#008B00;
+            font-size: 12px;margin-top: 1px}
+        li{list-style: none;}
+        .roll-wrap{height:110px;overflow:hidden;}
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="top">
+        <a href="../project.html">广东省可视化岗位统计与分析</a>
+    </div>
+    <div class="left_top"></div>
+    <div class="left_bottom"></div>
+    <div class="center"></div>
+    <div class="center_bottom"></div>
+    <div class="right_top"></div>
+    <div class="right_bottom">
+        <p>TOP    10</p>
+        <div class="wrap">
+            <div class="roll-wrap" id="roll-wrap">
+                <ul>
+                    <li><span>前端开发工程师</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>富力地产广州</span></li>
+                    <li><span>数据分析师&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>美的集团IT部(集团总部)</span></li>
+                    <li><span>可视化研发岗</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>中山大学国家超级计算广州中心</span></li>
+                    <li><span>H5前端工程师</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>广州幻境科技有限公司</span></li>
+                    <li><span>数据分析专家</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>亿迅广东</span></li>
+                    <li><span>BI工程师&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>碧桂园商业管理</span></li>
+                    <li><span>BI开发工程师</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>数夫软件开发部</span></li>
+                    <li><span>数据分析师&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>广州餐道</span></li>
+                    <li><span>Web前端工程师</span>&nbsp;&nbsp;&nbsp;&nbsp;<span>锦行网络科技有限公司</span></li>
+                    <li><span>数据分析师&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>普惠快捷金融服务有限公司</span></li>
+                    <li><span>可视化工程师</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>铂涛信息技术(广州)有限公司</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+    //地图
+    function xq(){
+        var myecharts=echarts.init(document.getElementsByClassName('center')[0]);//取块并初始化
+        var options={
+            title: {
+                text: '岗位需求',
+                left: 'center',
+                textStyle: {
+                    color: '#4dcbe1',
+                    fontSize:20,
+                    fontStyle: 'italic'
+                }
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+
+                orient: 'horizontal',
+                left: 'left'
+            },
+            visualMap: {
+                textStyle: {
+                color:'greenyellow'
+                    },
+                type: 'piecewise',
+                min: 100,
+                max: 1100,
+                left: 'left',
+                top: 'top',
+                showLabel:"true",
+                maxOpen:true,
+                color:["red","yellow","green"],
+                text: ['高','低'],           // 文本，默认为数值文本
+                calculable: true
+            },
+            toolbox: {
+                show: true,
+                orient: 'vertical',
+                left: 'right',
+                top: 'center',
+                feature: {
+                    dataView: {readOnly: false},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            series: [
+                {
+                    name: '岗位需求',
+                    type: 'map',
+                    mapType: '广东',
+                    roam: false,
+                    label: {
+                        normal: {
+                            show: true,
+                            color:'white'
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    data:[
+                        {name:"广州市",value:1900},
+                        {name:"韶关市",value:200},
+                        {name:"深圳市",value:1500},
+                        {name:"珠海市",value:1300},
+                        {name:"汕头市",value:857},
+                        {name:"佛山市",value:258},
+                        {name:"江门市",value:358},
+                        {name:"湛江市",value:910},
+                        {name:"茂名市",value:744},
+                        {name:"肇庆市",value:200},
+                        {name:"惠州市",value:580},
+                        {name:"梅州市",value:205},
+                        {name:"汕尾市",value:587},
+                        {name:"河源市",value:278},
+                        {name:"阳江市",value:725},
+                        {name:"清远市",value:555},
+                        {name:"东莞市",value:589},
+                        {name:"中山市",value:355},
+                        {name:"潮州市",value:158},
+                        {name:"揭阳市",value:201},
+                        {name:"云浮市",value:108}
+                    ]
+                }
+            ]
+        };
+        myecharts.setOption(options);//设置配置项
+    }
+    xq();
+    //左上
+    function hyxq() {
+        var dataAxis = ['科学可视化', '教育可视化', '信息可视化', '数据可视化', '地理可视化', '医学影像', '产品可视化',
+            '软件可视化', '工程制图', '立体渲染'];
+        var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321];
+        var yMax = 500;
+        var dataShadow = [];
+
+        for (var i = 0; i < data.length; i++) {
+            dataShadow.push(yMax);
+        }
+        var myecharts = echarts.init(document.getElementsByClassName('left_top')[0]);//取块并初始化
+        var options ={
+            title: {
+                text: '可视化的领域',
+                x:'center',
+                textStyle: {
+                    color: '#4dcbe1',
+                    fontSize:20,
+                    fontStyle: 'italic'
+                }
+            },
+            xAxis: {
+                data: dataAxis,
+
+                axisLabel: {
+                    inside: true,
+                    interval:0,
+                    rotate:-270,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                },
+                z: 10
+            },
+            yAxis: {
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#456abc'
+                    }
+                }
+            },
+            dataZoom: [
+                {
+                    type: 'inside'
+                }
+            ],
+            series: [
+                { // For shadow
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {color: 'rgba(0,0,0,0.05)'}
+                    },
+                    barGap:'-100%',
+                    barCategoryGap:'40%',
+                    data: dataShadow,
+                    animation: false
+                },
+                {
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#83bff6'},
+                                        {offset: 0.5, color: '#188df0'},
+                                        {offset: 1, color: '#188df0'}
+                                    ]
+                            )
+                        },
+                        emphasis: {
+                            color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#2378f7'},
+                                        {offset: 0.7, color: '#2378f7'},
+                                        {offset: 1, color: '#83bff6'}
+                                    ]
+                            )
+                        }
+                    },
+                    data: data
+                }
+            ]
+        };
+        myecharts.setOption(options);//设置配置项
+        var zoomSize = 6;
+        myecharts.on('click', function (params) {
+            console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+            myecharts.dispatchAction({
+                type: 'dataZoom',
+                startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+            });
+        });
+    }
+    hyxq();
+    //右上
+    function gw(){
+        var myecharts=echarts.init(document.getElementsByClassName('right_top')[0]);//取块并初始化
+        var options= {
+            title : {
+                text: '可视化岗位',
+                x:'center',
+                textStyle: {
+                    color: '#4dcbe1',
+                    fontSize:20,
+                    fontStyle: 'italic'
+                }
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                textStyle: {
+                    color: '#dea32c'
+                },
+                orient: 'vertical',
+                x : 'left',
+                y:'bottom',
+
+                data:['数据可视化工程师','Web前端工程师','SQL开发工程师','前端开发工程师','大数据分析工程师','BI可视化分析师',
+                    'BI软件开发工程师','数据分析岗（金融）']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {
+                        show: true,
+                        type: ['pie', 'funnel']
+                    },
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            series : [
+
+                {
+                    name:'岗位数量与占比',
+                    type:'pie',
+                    radius : [30, 110],
+                    center : ['50%', '33%'],
+                    roseType : 'area',
+                    data:[
+                        {value:236, name:'前端开发工程师'},
+                        {value:411, name:'数据可视化工程师'},
+                        {value:110, name:'大数据分析工程师'},
+                        {value:145, name:'BI可视化分析师'},
+                        {value:219, name:'BI软件开发工程师'},
+                        {value:336, name:'Web前端工程师'},
+                        {value:312, name:'SQL开发工程师'},
+                        {value:59, name:'数据分析岗（金融）'}
+                    ]
+                }
+            ]
+        };
+        myecharts.setOption(options);//设置配置项
+    }
+    gw();
+    //中下
+    function ly(){
+        var axisData = ['51job','BOSS直聘','58同城','拉钩网','赶集网','智联招聘','猎聘网'];
+        var data = [1024,1566,923,3292,551,2116,3581];
+        var links = data.map(function (item, i) {
+            return {
+                source: i,
+                target: i + 1
+            };
+        });
+        links.pop();
+        var myecharts=echarts.init(document.getElementsByClassName('center_bottom')[0]);//取块并初始化
+        var options= {
+            title: {
+                text: '数据来源',
+                textStyle: {
+                    color: '#4dcbe1',
+                    fontSize:20,
+                    fontStyle: 'italic'
+                }
+            },
+            tooltip: {},
+            xAxis: {
+                axisLine:{
+                    lineStyle:{
+                        color:'#256abb',
+                        width:1,//这里是为了突出显示加上的
+                    }
+                },
+                type : 'category',
+                boundaryGap : false,
+                data : axisData
+            },
+            yAxis: {
+                axisLine:{
+                    lineStyle:{
+                        color:'#256abb',
+                        width:1,//这里是为了突出显示加上的
+                    }
+                },
+                type : 'value'
+            },
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'none',
+                    coordinateSystem: 'cartesian2d',
+                    symbolSize: 20,
+                    label: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    edgeSymbol: ['circle', 'arrow'],
+                    edgeSymbolSize: [4, 10],
+                    data: data,
+                    links: links,
+                    lineStyle: {
+                        normal: {
+                            color: '#2f4554'
+                        }
+                    }
+                }
+            ]
+        };
+        myecharts.setOption(options);//设置配置项
+    }
+    ly();
+   //左下
+    function xz(){
+        var data = [
+            [[7000,680,1154,'BI软件开发工程师','专科'],[8599,750,4986705,'前端开发工程师','专科'],[7476,771,56943299,'大数据分析工程师','专科'],[8777,577,8706,'BI可视化分析师','专科'],[7550,791,122249285,'SQL开发工程师','专科'],[10088,708,38195258,'数据分析岗（金融）','专科'],[9349,696,147568552,'Web前端工程师','专科'],[8062,754,252847810,'数据可视化工程师','专科']],
+            [[8000,769,1276,'BI软件开发工程师','本科'],[9923,808,5503457,'前端开发工程师','本科'],[8599,819,60395345,'大数据分析工程师','本科'], [9903,608,1011,'BI可视化分析师','本科'],[9162,835,126573481,'SQL开发工程师','本科'],[14787,773,38611794,'数据分析岗（金融）','本科'],[13038,731,143456918,'Web前端工程师','本科'],[9354,791,301773631,'数据可视化工程师','本科']],
+            [[10000,789,1376,'BI软件开发工程师','研究生'],[12923,838,5603457,'前端开发工程师','研究生'],[12599,839,64395345,'大数据分析工程师','研究生'], [12903,668,1311,'BI可视化分析师','研究生'],[12162,855,136573481,'SQL开发工程师','研究生'],[16787,793,39611794,'数据分析岗（金融）','研究生'],[14038,751,153456918,'Web前端工程师','研究生'],[20054,821,321773631,'数据可视化工程师','研究生']],
+            [[12000,829,1476,'BI软件开发工程师','硕士'],[15923,888,5903457,'前端开发工程师','硕士'],[15599,869,68395345,'大数据分析工程师','硕士'], [13903,708,1511,'BI可视化分析师','硕士'],[15162,875,146573481,'SQL开发工程师','硕士'],[20787,873,41611794,'数据分析岗（金融）','硕士'],[20038,791,173456918,'Web前端工程师','硕士'],[23354,855,351773631,'数据可视化工程师','硕士']]
+        ];
+        var myecharts=echarts.init(document.getElementsByClassName('left_bottom')[0]);//取块并初始化
+        var options= {
+            title: {
+                text: '各岗位对应的学历与薪资',
+                textStyle: {
+                    color: '#4dcbe1',
+                    fontSize:18,
+                    fontStyle: 'italic'
+                }
+            },
+            legend: {
+                right: 10,
+                top:30,
+                data: ['专科', '本科','研究生','硕士'],
+                textStyle: {
+                    color:'#b2d235'
+                       }},
+            xAxis: {
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                },
+                axisLine:{
+                    lineStyle:{
+                        color:'#f00',
+                        width:1,//这里是为了突出显示加上的
+                    }
+                }
+            },
+            yAxis: {
+                axisLine:{
+                    lineStyle:{
+                        color:'#f00',
+                        width:1//这里是为了突出显示加上的
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                },
+                scale: true
+            },
+            series: [{
+                name: '专科',
+                data: data[0],
+                type: 'scatter',
+                symbolSize: function (data) {
+                    return Math.sqrt(data[2]) / 5e2;
+                },
+                label: {
+                    color:'rgb(251, 118, 123)',
+                    emphasis: {
+                        show: true,
+                        formatter: function (param) {
+                            return param.data[3];
+                        },
+                        position: 'top'
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        shadowBlur: 10,
+                        shadowColor: 'rgba(120, 36, 50, 0.5)',
+                        shadowOffsetY: 5,
+                        color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                            offset: 0,
+                            color: 'rgb(251, 118, 123)'
+                        }, {
+                            offset: 1,
+                            color: 'rgb(204, 46, 72)'
+                        }])
+                    }
+                }
+            },
+                {
+                    name: '本科',
+                    data: data[1],
+                    type: 'scatter',
+                    symbolSize: function (data) {
+                        return Math.sqrt(data[2]) / 5e2;
+                    },
+                    label: {
+                        color:'rgb(129, 227, 238)',
+                        emphasis: {
+                            show: true,
+                            formatter: function (param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(25, 100, 150, 0.5)',
+                            shadowOffsetY: 5,
+                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                                offset: 0,
+                                color: 'rgb(129, 227, 238)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(25, 183, 207)'
+                            }])
+                        }
+                    }
+                },
+                {
+                    name: '研究生',
+                    data: data[2],
+                    type: 'scatter',
+                    symbolSize: function (data) {
+                        return Math.sqrt(data[2]) / 5e2;
+                    },
+                    label: {
+                        color:'rgb(19, 127, 38)',
+                        emphasis: {
+                            show: true,
+                            formatter: function (param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(25, 100, 150, 0.5)',
+                            shadowOffsetY: 5,
+                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                                offset: 0,
+                                color: 'rgb(19, 127, 38)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(5, 13, 10)'
+                            }])
+                        }
+                    }
+                },
+                {
+                    name: '硕士',
+                    data: data[3],
+                    type: 'scatter',
+                    symbolSize: function (data) {
+                        return Math.sqrt(data[2]) / 5e2;
+                    },
+                    label: {
+                        color:'rgb(229, 227, 138)',
+                        emphasis: {
+                            show: true,
+                            formatter: function (param) {
+                                return param.data[3];
+                            },
+                            position: 'top'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(25, 100, 150, 0.5)',
+                            shadowOffsetY: 5,
+                            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                                offset: 0,
+                                color: 'rgb(229, 227, 138)'
+                            }, {
+                                offset: 1,
+                                color: 'rgb(125, 183, 107)'
+                            }])
+                        }
+                    }
+                }]
+        };
+        myecharts.setOption(options);//设置配置项
+    }
+    xz();
+   //右下
+    function scrollTxt(){
+        var controls={},
+                values={},
+                t1=100, /*播放动画的时间*/
+                t2=1000, /*播放时间间隔*/
+                si;
+        controls.rollWrap=$("#roll-wrap");
+        controls.rollWrapUl=controls.rollWrap.children();
+        controls.rollWrapLIs=controls.rollWrapUl.children();
+        values.liNums=controls.rollWrapLIs.length;
+        values.liHeight=controls.rollWrapLIs.eq(0).height();
+        values.ulHeight=controls.rollWrap.height();
+        this.init=function(){
+            autoPlay();
+            pausePlay();
+        }
+        /*滚动*/
+        function play(){
+            controls.rollWrapUl.animate({"margin-top" : "-"+values.liHeight}, t1, function(){
+                $(this).css("margin-top" , "0").children().eq(0).appendTo($(this));
+            });
+        }
+        /*自动滚动*/
+        function autoPlay(){
+            /*如果所有li标签的高度和大于.roll-wrap的高度则滚动*/
+            if(values.liHeight*values.liNums > values.ulHeight){
+                si=setInterval(function(){
+                    play();
+                },t2);
+            }
+        }
+        /*鼠标经过ul时暂停滚动*/
+        function pausePlay(){
+            controls.rollWrapUl.on({
+                "mouseenter":function(){
+                    clearInterval(si);
+                },
+                "mouseleave":function(){
+                    autoPlay();
+                }
+            });
+        }
+    }
+    new scrollTxt().init();
+</script>

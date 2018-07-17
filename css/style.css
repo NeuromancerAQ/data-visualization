@@ -1,0 +1,172 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,body{ overflow-y:hidden;}
+
+body{
+    position: relative;
+}
+
+.mainbg{
+    background: white no-repeat;
+    background-size: cover;
+}
+.mainbg video{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/*.box{*/
+    /*box-shadow: inset rgba(27,97,107,0.5) 6px;*/
+/*}*/
+
+#header{
+    font-size: 30px;
+    color: white;
+    text-align: center;
+    width: 400px;
+    height: 30px;
+    line-height: 30px;
+    position: absolute;
+    top: 30px;
+    left: 500px;
+    z-index: 5;
+}
+
+
+#myecharts1 {
+    width: 340px;
+    height: 295px;
+    position: absolute;
+    border:1px solid #00fefe;
+    border-radius: 5px;
+    top:100px;
+    left: 35px;
+}
+
+#myecharts2 {
+    width: 600px;
+    height: 280px;
+    position: absolute;
+    border:1px solid #00fefe;
+    border-radius: 5px;
+    bottom: 10px;
+    left: 35px;
+}
+
+#myecharts3 {
+    width: 510px;
+    height: 350px;
+    position: absolute;
+    border:1px solid #00fefe;
+    border-radius: 5px;
+    top: 100px;
+    left: 415px;
+}
+
+#myecharts4 {
+    width: 645px;
+    height: 280px;
+    position: absolute;
+    border:1px solid #00fefe;
+    border-radius: 5px;
+    bottom: 10px;
+    right: 35px;
+}
+
+#myecharts5 {
+    width: 345px;
+    height: 290px;
+    position: absolute;
+    border:1px solid #00fefe;
+    border-radius: 5px;
+    top: 102px;
+    right: 35px;
+}
+
+#header-main {
+    width: 600px;
+    height: 100px;
+    /*background: red;*/
+    position: absolute;
+    top: 100px;
+    left: 360px;
+    font-size: 24px;
+    color:rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+#menu {
+    cursor: pointer;
+    position: absolute;
+    top: 35px;
+    right: 70px;
+}
+
+#list {
+    width: 450px;
+    height: 763px;
+    position: absolute;
+    left: -500px;
+    top:0;
+    z-index: 10000;
+    overflow: auto;
+}
+#list::-webkit-scrollbar{
+    display: none;
+}
+
+#list a {
+    width: 400px;
+    height: 220px;
+    display: inline-block;
+    float: left;
+    border-radius: 10px;
+}
+
+#list a:hover {
+    box-shadow: 8px 10px 20px 5px rgba(255,255,255,0.3);
+    transform: translate3d(0 ,-4px,0);
+    transition: all .2s linear;
+}
+
+#zx {
+    background: url("../source/zx.jpg") center no-repeat;
+    background-size: cover;
+}
+
+#yps {
+    background: url("../source/yps.jpg") center no-repeat;
+    background-size: cover;
+}
+
+#hx {
+    background: url("../source/hx.jpg") center no-repeat;
+    background-size: cover;
+}
+#lyk {
+    background: url("../source/lyk.jpg") center no-repeat;
+    background-size: cover;
+}
+
+#lcp {
+    background: url("../source/lcp.jpg") center no-repeat;
+    background-size: cover;
+}
+
+#slq {
+    background: url("../source/slq.png") center no-repeat;
+    background-size: cover;
+}
+
+
+
+
+
+
+
+

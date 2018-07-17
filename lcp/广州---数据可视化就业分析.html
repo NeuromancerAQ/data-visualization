@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0}
+        h1{height: 80px;text-align:center;position:relative;color: seashell;line-height: 70px}
+        h1>a{text-decoration: none;font-family:cursive;text-shadow:8px 4px 4px #333;color:yellowgreen}
+        .bg{position:fixed;top:0;bottom:0;left:0;right:0;z-index:-1;background:url("images/9.jpg");background-size: cover}
+        .left{width: 41%;height: 660px;float: left;margin-left: 2%;border: 1px solid #5bc0de;border-radius:20px}
+        .middle{width: 31%;height: 660px;float: left;margin-left: 2%;border: 1px solid #5bc0de;border-radius:20px}
+        .right{width: 20%;height: 660px;float: left;margin-left: 2%;border: 1px solid #5bc0de;border-radius:20px}
+        .left .left_top{height: 452px;border-bottom: 1px solid #5bc0de}
+        .left .left_foot1{width: 49%;height: 208px;float: left}
+        .left .left_foot{width: 49%;height: 208px;float: left;overflow: hidden;margin-left: 10px}
+        .middle .middle_top{height: 330px}
+        .middle .middle_foot{height: 330px}
+        .right .right_top{height:390px;border-bottom: 1px solid #5bc0de}
+        .right .right_foot{height: 270px}
+        li{height: 52px;list-style-type: none;color:orange;font-size: 10px;text-align: left}
+    </style>
+    <script src="js/jquery-3.1.0.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/dataTool.min.js"></script>
+</head>
+<body>
+<h1>大数据可视化就业前景分析---<a href="../project.html">深圳</a></h1>
+<div class="bg"></div>
+<div class="left">
+    <div id="echarts1" class="left_top"></div>
+    <div id="echarts2" class="left_foot">
+        <ul id="ul">
+            <li>当今时代是大数据时代,也是大数据人才稀缺的时代</li>
+            <li>大数据的迅猛发展,促使大数据人才的薪资普遍偏高</li>
+            <li>掌握大数据技术,工资提升40%左右是很常见的</li>
+            <li>大数据的就业领域是很宽广的,就业机会很大</li>
+        </ul>
+    </div>
+    <div class="left_foot1" id="echarts7"></div>
+</div>
+<div class="middle">
+    <div id="echarts3" class="middle_top"></div>
+    <div id="echarts4" class="middle_foot"></div>
+</div>
+<div class="right">
+    <div id="echarts5" class="right_top"></div>
+    <div id="echarts6" class="right_foot"></div>
+</div>
+</body>
+</html>
+<script>
+    var myecharts2=echarts.init(document.getElementById('echarts7'))
+    var myecharts3=echarts.init(document.getElementById('echarts3'))
+    var myecharts6=echarts.init(document.getElementById('echarts6'))
+    var options3={
+        color:['red','orange'],
+        legend: {
+            data: ['北上广深', '其它'],
+            textStyle:{
+                color:"yellowgreen"
+            },
+            left:"left"
+        },
+        radar: {
+            name: {
+                textStyle: {
+                    color: 'orange',
+                    backgroundColor: '#999',
+                    borderRadius: 3,
+                    padding: [3, 5]
+                }
+            },
+            indicator: [
+                { name: '薪资', max: 15000},
+                { name: '奖金', max: 15000},
+                { name: '住房', max: 15000},
+                { name: '交通', max: 15000},
+                { name: '机遇', max: 15000},
+                { name: '公司', max: 15000},
+                { name: '环境', max: 15000}
+            ]
+        },
+        series: [{
+            name: '',
+            type: 'radar',
+            data : [
+                {
+                    value : [14000, 13200, 10000, 9500, 14000, 13000,10500],
+                    name : '北上广深'
+                },
+                {
+                    value : [11000, 10000, 12500, 12000, 11500, 10500,13000],
+                    name : '其它'
+                }
+            ]
+        }]
+    };
+    myecharts3.setOption(options3)
+    var options6={
+        title:{
+            text:"发展趋势",
+            left:"center",
+            textStyle:{
+                color:"yellowgreen",
+                fontSize:20
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: ['2014','2015', '2016', '2017', '2018'],
+            axisLine:{
+                lineStyle:{
+                    color:"yellowgreen",
+                    width:1,
+                    type:"solid"
+                }
+            },
+            axisLabel:{
+                color:"white",
+                rotate:45
+            }
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                lineStyle:{
+                    color:"yellowgreen",
+                    width:1,
+                    type:"solid"
+                }
+            },
+            axisLabel:{
+                color:"white",
+            }
+        },
+        series: [{
+            data: [6,9,15,36,62],
+            type: 'line',
+            itemStyle:{
+                normal:{
+                    lineStyle:{
+                        color:"yellow"
+                    }
+                }
+            }
+        }]
+    };
+    myecharts6.setOption(options6)
+    var datainfo={
+        "xdata":['北京','江苏','广东','山东'],
+        "ydata":[24343,6379,5213,4492]
+    };
+    var options2= {
+        color:['orange','yellow','red','purple'],
+        title:{
+            text:"职位要求",
+            textStyle:{
+                color:"yellowgreen",
+                fontSize:15
+            },
+            left:"center",
+            top:"bottom"
+        },
+        legend: {
+            x : 'center',
+            y : 'top',
+            data:['技能','经验','学历','学习'],
+            textStyle:{
+                color:"yellowgreen"
+            }
+        },
+        calculable : true,
+        series : [
+            {
+                name:'半径模式',
+                type:'pie',
+                radius : [10, 80],
+                center : ['50%', '50%'],
+                roseType : 'radius',
+                label: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                lableLine: {
+                    normal: {
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                data:[
+                    {value:35, name:'技能'},
+                    {value:15, name:'学习'},
+                    {value:28, name:'经验'},
+                    {value:22, name:'学历'}
+                ]
+            }
+        ]
+    };
+    myecharts2.setOption(options2)
+</script>
+<script>
+    var myDiv = document.getElementById("echarts2");
+    var myUl = document.getElementById("ul");
+    var myUl2=myUl.cloneNode(true);
+    myDiv.appendChild(myUl2)
+    var timer = setInterval(moveUp, 30);
+    function moveUp() {
+        if (myDiv.scrollTop < myUl.offsetHeight) {
+            myDiv.scrollTop++;
+        } else {
+            myDiv.scrollTop = 0;
+        }
+    }
+    myDiv.onmouseover = function() {
+        clearInterval(timer);
+    }
+    myDiv.onmouseout = function() {
+
+        clearInterval(timer);
+        timer = setInterval(moveUp, 30)
+    }
+</script>
+<script>
+    var myecharts5=echarts.init(document.getElementById('echarts5'))
+    var options5={
+        title:{
+            text:'可视化就业岗位',
+            left:"center",
+            top:"10",
+            textStyle:{
+                color:"yellowgreen",
+                fontSize:20
+            }
+        },
+        animation: false,
+        series : [
+            {
+                draggable: true,
+                symbolSize:40,
+                name: '',
+                type: 'graph',
+                layout: 'force',
+                data: [
+                    {name:'可视化',value:20},
+                    {name:'咨询',value:20},
+                    {name:'挖掘',value:20},
+                    {name:'科学',value:20},
+                    {name:'分析',value:20},
+                    {name:'实施',value:20},
+                    {name:'工程',value:20}
+                ]
+                ,
+                links: [
+                    {source:'可视化',target:'挖掘'},
+                    {source:'可视化',target:'咨询'},
+                    {source:'可视化',target:'分析'},
+                    {source:'可视化',target:'科学'},
+                    {source:'可视化',target:'实施'},
+                    {source:'可视化',target:'工程'}
+                ]
+                ,
+                roam: true,
+                label: {
+                    normal: {
+                        show:true,
+                        position: 'inside'
+                    }
+                },
+                edgeSymbol: ['none', 'arrow'],
+                lineStyle: {
+                    color:"green",
+                    width:2,
+                    type:"solid",
+                    curveness: 0.4,
+                },
+                force: {
+                    repulsion: 600
+                }
+            }
+        ]
+    };
+    myecharts5.setOption(options5)
+    myecharts5.on('click',function(p){
+        window.open("https://www.baidu.com/s?wd="+"数据"+ (p.name)+"师")
+    })
+</script>
+<script>
+    var myecharts1=echarts.init(document.getElementById('echarts1'))
+    var dataMap = {};
+    function dataFormatter(obj) {
+        var pList = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+        var temp;
+        for (var year = 2013; year <=2017; year++) {
+            var max = 0;
+            var sum = 0;
+            temp = obj[year];
+            for (var i = 0, l = temp.length; i < l; i++) {
+                max = Math.max(max, temp[i]);
+                sum += temp[i];
+                obj[year][i] = {
+                    name : pList[i],
+                    value : temp[i]
+                }
+            }
+            obj[year + 'max'] = Math.floor(max / 100) * 100;
+            obj[year + 'sum'] = sum;
+        }
+        return obj;
+    }
+
+    dataMap.dataGDP = dataFormatter({
+        2017:[16000,12000,25000,11000,13000,22000,10000,12000,20000,50000,32000,15000],
+        2016:[14000,9000,20000,9000,12000,18000,9000,10000,17000,40000,28000,12000],
+        2015:[12000,8000,17000,8000,9500,15000,7000,9000,15000,35000,23000,10000],
+        2014:[11000,6800,16000,7000,8500,13000,6500,8200,14000,30000,21000,9000],
+        2013:[10000,5000,13000,6000,6400,11000,5300,7000,12000,25000,18000,7500]
+    });
+
+    dataMap.dataPI = dataFormatter({
+        //max : 4000,
+        2017:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2016:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2015:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2014:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2013:[0,0,0,0,0,0,0,0,0,0,0,0]
+    });
+
+    dataMap.dataSI = dataFormatter({
+        //max : 26600,
+        2017:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2016:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2015:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2014:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2013:[0,0,0,0,0,0,0,0,0,0,0,0]
+    });
+
+    dataMap.dataTI = dataFormatter({
+        //max : 25000,
+        2017:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2016:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2015:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2014:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2013:[0,0,0,0,0,0,0,0,0,0,0,0]
+    });
+
+    dataMap.dataEstate = dataFormatter({
+        //max : 3600,
+        2017:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2016:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2015:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2014:[0,0,0,0,0,0,0,0,0,0,0,0],
+        2013:[0,0,0,0,0,0,0,0,0,0,0,0]
+    });
+
+    dataMap.dataFinancial = dataFormatter({
+        //max : 3200,
+        2017:[8000,7200,8500,5000,4800,5100,4700,3400,9500,11000,9000,6400],
+        2016:[5000,4400,6000,4000,3800,3500,3600,3000,8000,9200,7800,5000],
+        2015:[4000,3300,5000,2800,2700,2400,2400,2100,6000,8000,6200,3600],
+        2014:[3000,2300,4000,2000,2100,3600,1900,1800,4800,6800,5000,2800],
+        2013:[2500,1800,3500,1500,1500,3000,1500,1600,3800,5800,4000,2100]
+    });
+    var options1= {
+        baseOption: {
+            timeline: {
+                axisType: 'category',
+                lineStyle:{
+                    color:'yellowgreen'
+                },
+                autoPlay: true,
+                playInterval: 1200,
+                data: [
+                    '2013-01-01', '2014-01-01','2015-01-01','2016-01-01','2017-01-01',
+
+                ],
+                label: {
+                    formatter : function(s) {
+                        return (new Date(s)).getFullYear();
+                    }
+                }
+            },
+            calculable : true,
+            grid: {
+                top: '10%',
+                bottom: '18%'
+            },
+            xAxis: [
+                {
+                    'type':'category',
+                    'axisLabel':{'interval':0},
+                    'data':[
+                        '1月','2月','3月','4月','5月','6月','7月','8月',
+                        '9月','10月','11月','12月'
+                    ],
+                    splitLine: {show: false},
+                    axisLine:{
+                        lineStyle:{
+                            color:"yellowgreen",
+                            width:1,
+                            type:"solid"
+                        }
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    axisLine:{
+                        lineStyle:{
+                            color:"yellowgreen",
+                            width:1,
+                            type:"solid"
+                        }
+                    }
+                }
+            ],
+            color:['yellow','red'],
+            series: [
+                {name: 'GDP', type: 'bar', barWidth : 10},
+                {name: '金融', type: 'bar', barWidth : 10},
+                {name: '需求量', type: 'bar', barWidth : 10},
+                {name: '求职数', type: 'bar', barWidth : 10},
+                {name: '第二产业', type: 'bar', barWidth : 10},
+                {name: '第三产业', type: 'bar', barWidth : 10},
+                {
+                    name: '123',
+                    type: 'pie',
+                    center: ['25%', '20%'],
+                    radius: '',
+                    z: 100
+                }
+            ]
+        },
+        options: [
+            {
+                title : {text: '2013需求量与求职数对比', textStyle:{color:'yellowgreen'},left:'center'},
+                series : [
+                    {data: dataMap.dataEstate['2013']},
+                    {data: dataMap.dataPI['2013']},
+                    {data: dataMap.dataGDP['2013']},
+                    {data: dataMap.dataFinancial['2013']},
+                    {data: dataMap.dataSI['2013']},
+                    {data: dataMap.dataTI['2013']}
+                ]
+            },
+            {
+                title : {text: '2014需求量与求职数对比', textStyle:{color:'yellowgreen'},left:'center'},
+                series : [
+                    {data: dataMap.dataEstate['2014']},
+                    {data: dataMap.dataPI['2014']},
+                    {data: dataMap.dataGDP['2014']},
+                    {data: dataMap.dataFinancial['2014']},
+                    {data: dataMap.dataSI['2014']},
+                    {data: dataMap.dataTI['2014']}
+                ]
+            },
+            {
+                title : {text: '2015需求量与求职数对比', textStyle:{color:'yellowgreen'},left:'center'},
+                series : [
+                    {data: dataMap.dataEstate['2015']},
+                    {data: dataMap.dataPI['2015']},
+                    {data: dataMap.dataGDP['2015']},
+                    {data: dataMap.dataFinancial['2015']},
+                    {data: dataMap.dataSI['2015']},
+                    {data: dataMap.dataTI['2015']}
+                ]
+            },
+            {
+                title : {text: '2016需求量与求职数对比',textStyle:{color:'yellowgreen'},left:'center'},
+                series : [
+                    {data: dataMap.dataEstate['2016']},
+                    {data: dataMap.dataPI['2016']},
+                    {data: dataMap.dataGDP['2016']},
+                    {data: dataMap.dataFinancial['2016']},
+                    {data: dataMap.dataSI['2016']},
+                    {data: dataMap.dataTI['2016']}
+                ]
+            },
+            {
+                title : {text: '2017需求量与求职数对比',textStyle:{color:'yellowgreen'},left:'center'},
+                series : [
+                    {data: dataMap.dataEstate['2017']},
+                    {data: dataMap.dataPI['2017']},
+                    {data: dataMap.dataGDP['2017']},
+                    {data: dataMap.dataFinancial['2017']},
+                    {data: dataMap.dataSI['2017']},
+                    {data: dataMap.dataTI['2017']}
+                ]
+            },
+            {
+                title : {text: '2013需求量与求职数对比', textStyle:{color:'yellowgreen'},left:'center'},
+                series : [
+                    {data: dataMap.dataEstate['2013']},
+                    {data: dataMap.dataPI['2013']},
+                    {data: dataMap.dataGDP['2013']},
+                    {data: dataMap.dataFinancial['2013']},
+                    {data: dataMap.dataSI['2013']},
+                    {data: dataMap.dataTI['2013']}
+                ]
+            }
+        ]
+    };
+    myecharts1.setOption(options1)
+</script>
+<script>
+    var myecharts4=echarts.init(document.getElementById('echarts4'))
+    var dataStyle = {
+        normal: {
+            label: {
+                show: false
+            },
+            labelLine: {
+                show: false
+            },
+            shadowBlur: 40,
+            shadowColor: 'rgba(40, 40, 40, 0.3)',
+        }
+    };
+    var piePlaceHolderStyle = {
+        normal: {
+            color: 'rgba(0,0,0,0)',
+            label: {
+                show: false
+            },
+            labelLine: {
+                show: false
+            },
+            opacity: 0
+        },
+        emphasis: {
+            color: 'rgba(0,0,0,0)',
+            opacity: 0
+        }
+    };
+    var colorArr1 = ['red', 'orange', 'purple', 'yellow', 'green'];
+    var dataPie1 = ['<0.8万', '0.8万-1.2万', '1.2万-2万', '1.6万-2万', '>2万'];
+    var pieCenter = ['18%', '68%'];
+    var options4= {
+        title:{
+            top:30,
+            left:"center",
+            text:"薪资分布",
+            textStyle:{
+                color:"yellowgreen"
+            }
+        },
+        backgroundColor: 'transparent',
+        color: colorArr1,
+        tooltip: {
+            show: false
+        },
+        grid: {
+            containLabel: true
+        },
+        legend: {
+            itemGap: 20,
+            itemWidth: 10,
+            itemHeight: 10,
+            top:260,
+            left: 30,
+            data: dataPie1,
+            textStyle: {
+                color: 'yellowgreen'
+            }
+        },
+        singleAxis: [{
+            type: 'category',
+            width: 190,
+            height: 10,
+            left: 40,
+            top: 220,
+            axisLine: {
+                show: false
+            },
+            axisLabel: {
+                interval: 0,
+                textStyle: {
+                    fontSize: 14,
+                },
+            },
+            axisTick: {
+                show: false,
+                alignWithLabel: true,
+            },
+            splitLine: {
+                show: false
+            },
+            data: [{
+                value: '20%',
+                textStyle: {
+                    color: colorArr1[4]
+                }
+            }, {
+                value: '40%',
+                textStyle: {
+                    color: colorArr1[3]
+                }
+            }, {
+                value: '25%',
+                textStyle: {
+                    color: colorArr1[2]
+                }
+            }, {
+                value: '9%',
+                textStyle: {
+                    color: colorArr1[1]
+                }
+            }, {
+                value: '6%',
+                textStyle: {
+                    color: colorArr1[0]
+                }
+            }]
+        }],
+        series: [{
+            singleAxisIndex: 0,
+            coordinateSystem: 'singleAxis',
+            hoverAnimation: false,
+            symbolSize: 0,
+            type: 'scatter',
+            data: [
+                [0],
+                [1],
+                [2],
+                [3],
+                [4]
+            ]
+        }, {
+            type: 'pie',
+            startAngle: 0,
+            clockWise: false,
+            center: pieCenter,
+            radius: [217, 242],
+            itemStyle: dataStyle,
+            silent: true,
+            hoverAnimation: false,
+            data: [{
+                value: 15,
+                name: dataPie1[4],
+            }, {
+                value:600,
+                itemStyle: piePlaceHolderStyle
+            }]
+        }, {
+            type: 'pie',
+            startAngle: 0,
+            clockWise: false,
+            center: pieCenter,
+            radius: [179, 204],
+            itemStyle: dataStyle,
+            silent: true,
+            hoverAnimation: false,
+            data: [{
+                value: 7.5,
+                name: dataPie1[3]
+            }, {
+                value: 250,
+                itemStyle: piePlaceHolderStyle
+            }]
+        }, {
+            type: 'pie',
+            startAngle: 0,
+            clockWise: false,
+            center: pieCenter,
+            hoverAnimation: false,
+            radius: [141, 166],
+            itemStyle: dataStyle,
+            silent: true,
+            data: [{
+                value: 7.5,
+                name: dataPie1[2]
+            }, {
+                value: 100,
+                itemStyle: piePlaceHolderStyle
+            }]
+        }, {
+            type: 'pie',
+            startAngle: 0,
+            clockWise: false,
+            center: pieCenter,
+            hoverAnimation: false,
+            radius: [103, 128],
+            itemStyle: dataStyle,
+            silent: true,
+            data: [{
+                value: 15,
+                name: dataPie1[1]
+            }, {
+                value: 60,
+                itemStyle: piePlaceHolderStyle
+            }]
+        }, {
+            type: 'pie',
+            startAngle: 0,
+            clockWise: false,
+            center: pieCenter,
+            hoverAnimation: false,
+            radius: [65, 90],
+            itemStyle: dataStyle,
+            silent: true,
+            data: [{
+                value: 10,
+                name: dataPie1[0]
+            }, {
+                value: 90,
+                itemStyle: piePlaceHolderStyle
+            }]
+        },
+
+        ]
+    };
+    myecharts4.setOption(options4)
+</script>
+

@@ -1,0 +1,1168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+     <!--<script src="js/echarts.js"></script>-->
+    <script src="js/echarts.min.js"></script>
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/china.js"></script>
+    <script src="js/dataTool.min.js"></script>
+    <script src="js/worldcloud.js"></script>
+    <link rel="stylesheet" href="css/bg.css">
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        body{background-color:rgba(58,132,168,0.5)}
+        #bg{
+            /*background: url(images/bg.jpg);*/
+
+            /*background-size: 100% 100%;*/
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+        #head{
+            width:100%;
+            height: 100px;
+            background: url(images/head.jpg) center;
+            /*border:1px solid #00fefe;*/
+            color:white;
+            position: absolute;
+            line-height: 30px;
+            text-align: center;
+            font-size: 30px;
+
+            /*text-decoration: none;*/
+            /*display: inline-block;*/
+
+        }
+        #middle{
+            /*background-color: rgba(58,132,168,0.5);*/
+            width:45%;
+            height: 660px;
+            margin-left:25%;
+
+        }
+        #middle_top{
+            width:40%;
+            height: 320px;
+            border:1px solid white;
+            position: absolute;
+            left:410px;
+            top:100px;
+            border-radius: 10px;
+        }
+        #middle_bottom{
+            width:40%;
+            height: 320px;
+            border:1px solid white;
+            position: absolute;
+            left:410px;
+            top:430px;
+            border-radius: 10px;
+        }
+        #left{
+            /*background-color: rgba(78,165,177,0.5);*/
+            width:28%;
+            height: 650px;
+            border:1px solid white;
+            position: absolute;
+            left:15px;
+            top:100px;
+            border-radius: 10px;
+        }
+
+        #left_top{
+            width:100%;
+            height: 320px;
+            padding-top: 3%;
+            /*border:1px solid #00fefe;*/
+            /*position: absolute;*/
+            left:5px;
+            top:10px;
+            border-radius: 25px;
+        }
+        #left_bottom{
+            width:100%;
+            height: 320px;
+            /*border:1px solid #00fefe;*/
+            position: absolute;
+            /*left:50px;*/
+            top:340px;
+            border-radius: 10px;
+        }
+        #right{
+            /*background-color: rgba(78,165,177,0.5);*/
+            width:28%;
+            height: 650px;
+            border: 1px solid white;
+            position: absolute;
+            right:15px;
+            top:100px;
+            border-radius: 10px;
+        }
+        #right_top{
+            width:100%;
+            height: 320px;
+            /*border:1px solid #00fefe;*/
+            position: absolute;
+            /*left:1095px;*/
+            top:10px;
+            border-radius: 10px;
+        }
+        #right_bottom{
+            width:100%;
+            height: 320px;
+            /*border:1px solid #00fefe;*/
+            position: absolute;
+            /*left:1095px;*/
+            top:340px;
+            border-radius: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<nav class="codrops-demos">
+<div id="bg">
+    <div id="head">
+        <a href="../project.html">北京大数据及可视化岗位需求分析</a>
+    </div>
+    <div id="left">
+        <div id="left_top" ></div>
+        <div id="left_bottom" ></div>
+    </div>
+    <div id="middle">
+        <div id="middle_top"></div>
+        <div id="middle_bottom" ></div>
+    </div>
+    <div id="right">
+        <div id="right_top"></div>
+        <div id="right_bottom" ></div>
+    </div>
+</div>
+</nav>
+</body>
+<canvas id="canv"></canvas>
+
+<!--left_top-->
+<script>
+
+    var myecharts=echarts.init(document.getElementById('left_top'));
+    var options={
+      title: [
+            {
+                text: '平均工资分布分析',
+                x: 'center',
+                top:'0',
+                textStyle:{
+                    color:'white',
+                    fontSize:20
+                }
+            }
+                   ],
+
+        tooltip: {
+            position: 'top'
+        },
+        animation: false,
+        grid: {
+            height: '50%',
+            y: '20%'
+        },
+        xAxis: {
+            type: 'category',
+            data: ['学历不限','中专','大专','本科','硕士','博士'],
+            rotate:45,
+            splitArea: {
+                show: true
+            },
+            axisLabel: {
+                rotate:45,
+                color:'white'
+            }
+        },
+
+        yAxis: {
+            type: 'category',
+            data: ['不限',	'1年以上',	'2年以上',	'3年以上',	'5年以上'],
+            splitArea: {
+                show: true
+            },
+            axisLabel: {
+                rotate:-60,
+                color:'white'
+            }
+        },
+        visualMap: {
+            min: 0,
+            max: 50,
+            color:['blue','springgreen','tomato'],
+            calculable: true,
+            orient: 'horizontal',
+            left: 'center',
+            bottom: '10%',
+            textStyle:{
+                color:'white'
+            }
+
+        },
+        series: [{
+            name: 'Punch Card',
+            type: 'heatmap',
+            data:
+                    [
+                        [0,0,15],	[0,1,6],	[0,2,1],	[0,3,12],	[0,4,2],[0,5,0],[1,0,0],[1,1,0],[1,2,0],	[1,3,1],[1,4,0],[1,5,0], [2,0,3],	[2,1,8],[2,2,0],	[2,3,11],[2,4,0],	[2,5,4], [3,0,48],	[3,1,105],	[3,2,11],	[3,3,221],[3,4,0],		[3,5,50],	[4,0,2],	[4,1,4],	[4,2,0],	[4,3,2],	[4,4,0],	[4,5,1],	[5,0,1],[5,1,0],[5,2,0],[5,3,0],[5,4,0],[5,5,0]
+                    ],
+            label: {
+                normal: {
+                    show: true
+                }
+            },
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }]
+    };
+    myecharts.setOption(options)
+
+
+</script>
+
+<!--left_bottom-->
+<script>
+    $(function(){
+        echartsCloud();//初始化echarts图
+    });
+    function echartsCloud(){
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('left_bottom'));
+
+        myChart.setOption({
+            title: {
+                text: '大数据岗位词云',
+                left:'center',
+                top:0,
+                textStyle:{
+                    color:'white',
+                    fontSize: 20
+
+                }
+
+            },
+            grid: {
+                height: '50%',
+                y: '30%'
+            },
+            tooltip: {},
+            series: [{
+                type : 'wordCloud',  //类型为字符云
+                shape:'smooth',  //平滑
+                gridSize : 2, //网格尺寸
+                size : ['80%','80%'],
+//                sizeRange : [12, 80],
+                rotationRange : [ 46, 80], //旋转范围
+                textStyle : {
+                    normal : {
+                        fontFamily:'sans-serif',
+                        color : function() {
+                            return 'rgb('
+                                    + [Math.round(Math.random() * 160),
+                                        Math.round(Math.random() * 160),
+                                        Math.round(Math.random() * 160) ]
+                                            .join(',') + ')';
+                        }
+                    },
+                    emphasis : {
+                        shadowBlur : 5,  //阴影距离
+                        shadowColor : '#333'  //阴影颜色
+                    }
+                },
+                data:[]
+            }]
+        });
+        // 异步加载数据
+        $.get('./cloud.json').done(function (data) {
+            // 填入数据
+            myChart.setOption({
+                series: [{
+                    data: data.dataCloud
+                }]
+            });
+        });
+    }
+
+
+
+</script>
+
+<!--middle_top-->
+<script>
+    var myecharts;
+    function drawBar(){
+    myecharts=echarts.init(document.getElementById('middle_top'));
+    var options={
+        title: [
+            {
+                text: '中国大数据市场趋势',
+                left: 'center',
+                top:10,
+                textStyle:{//文本修饰
+                    color:'white',
+                    fontSize:'20'//加不加引号均可
+                }
+            },
+            {
+                borderColor: '#999',
+                textStyle: {
+                    fontSize: 14
+                },
+                left: '10%',
+                top: '90%'
+            }
+        ],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+//                crossStyle: {
+//                    color: '#999'
+//                }
+            }
+        },
+        toolbox: {
+            feature: {
+                dataView: {show: false, readOnly: false},
+                magicType: {show: false, type: ['line', 'bar']},
+                restore: {show: false},
+                saveAsImage: {show: false}
+            }
+        },
+        legend: {
+            data:['中国大数据市场规模(亿元)','增速'],
+            bottom:10,
+            textStyle:{
+                color:'white'
+            }
+
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['2014年','2015年','2016年','2017年','2018年E','2019年E','2020年E'],
+                axisPointer: {
+                    type: 'shadow'
+                },
+                nameTextStyle: {
+                    color:'red',
+                }
+            }
+
+
+        ],
+        axisLabel:{
+            color:'white'
+        },
+        yAxis: [
+            {
+                type: 'value',
+                splitLine:{
+                    show:false
+                },
+//                name: '规模',
+                min: 0,
+                max: 700,
+//                interval: 100
+//                axisLabel: {
+//                    formatter: '{value} ml'
+//                }
+            },
+
+            {
+                type: 'value',
+                splitLine:{
+                    show:false
+                },
+//                name: '增速',
+                min: 0,
+                max: 50,
+//                interval: 5,
+                axisLabel: {
+                    formatter: '{value} %'
+                }
+            }
+        ],
+        series: [
+            {
+                name:'中国大数据市场规模(亿元)',
+                type:'bar',
+                data:[84,116,168,234,327,436,578],
+                itemStyle:{
+//                    color:"#6CC2E3"
+                    normal:{
+                        color: function(params) {
+                            // build a color map as your need.
+                            var colorList = [
+                                '#f37a00','#dd6a06','#fcb98f','#ffcdb4','#74533f',
+                                '#ac2503','tomato'];
+                            return colorList[params.dataIndex]
+                        }
+                    }
+                },
+                label:{
+                    show:true,
+                    position:'top'
+                }
+
+
+            },
+
+            {
+                name:'增速',
+                type:'line',
+                yAxisIndex: 1,
+                data:[, 38.0, 45.0, 39.3, 39.7, 33.3, 32.6],
+                lineStyle: {
+                    normal: {
+                        color:'red',
+                        width: 3,
+                        shadowColor: 'rgba(0,0,0,0.4)',
+                        shadowBlur: 10,
+                        shadowOffsetY: 10
+                    }
+                },
+                label:{
+                    show:true,
+                    position:'top',
+                    formatter:'{c}%'
+                }
+
+            }
+
+        ]
+
+
+
+    };
+    myecharts.setOption(options);
+    }
+    drawBar();
+    myecharts.on('click',function(params){
+        if(params.name=='2018年E'){
+            $.get('data/data01.json').done(function(data){
+                myecharts.setOption({
+                    xAxis:{
+                        data:data.category
+                    },
+                    series:[{
+                        name:'销量',
+                        data:data.data
+                    }]
+                })
+
+            })
+        }
+
+    })
+
+
+</script>
+
+<!--middle-bottom-->
+<script>
+    var myecharts=echarts.init(document.getElementById('middle_bottom'));
+    var data = echarts.dataTool.prepareBoxplotData([
+        [15,25,20,37.5,22,12.5,32.5,15,27.5,25,15,15,27.5,20,30,60,7,4,9,20,42.5,30,20,19,12.5,20,20,30,16.5,20,30,22.5,15,22.5,22.5,20,30,20,22.5,22.5,27.5,15,22.5,15,22.5,30,22.5,15,22.5,22.5,15,25,14,12.5,11.5,20,42.5,25,16.5,40,22.5,30,22.5,17.5,27.5,22.5,35,22.5,37.5,22.5,20,37.5,20,20,17,37.5,32.5,35,20,15,22,35,37.5,45,22.5,22.5,20,27.5,20,45,12.5,22.5,27.5,15,15,9,22.5,20,40,30,11,22.5,19,25,20,15,30,42.5,22.5,30,22.5,27.5,26.5,30,20,30,27.5,27.5,30,20,25,25,25,15,27.5,32.5,25,30,16,22.5,32.5,30,15,15,12.5,12.5,12.5,22.5,12.5,15,17,17.5],
+        [15,15,9,11.5,15,26.5,15,15,15,27.5,15,22.5,32.5,22.5,22.5,22.5,17.5,22.5,27.5,15,22.5,42.5,22.5,15,30,22.5,30,27.5,27.5,14,15,60,30,22.5,27.5,15,22.5,32.5,22.5,30,22.5,17.5,25,15,12.5,35,20,9,15,20,12.5,15,22.5,17.5,17.5,16.5,22.5,17.5,20,22.5],
+        [15,15,17.5,12.5,15,17.5,17.5,35,37.5,25,22.1,22.1,25,35,20,30,20,17.5,22.5,20,22.5,30,20,22.5,16,20,19,14,35,22.5,22.5,25,15,15,25,15,22.5,22.5,22.5,27.5,37.5,17,30,19,37.5,30,25,25,15,30,22.5,17.5,22.5,30,27.5,37.5,20,20,45,25,22.5,17.5,20,17,22.5,12.5,32.5,22.5,11.5,22.5,17.5,25,15,20,12.5,12.5,12.5,12.5,11.5,25,30,30,20,20,15,22.5,20,20,15,20,17.5,15,22.5,16.5,20,14,15,20,22.5,30,20,22.5,20,27.5,30,17.5,14,15,20,22.5,30,15,22.5,15,27.5,20,15,20,25,15,22.5,22.5,22.5,25,20,20,27.5,12.5,20,25,22.5,20,20,30,20,12.5,30,22.5,20,22.5,27.5,22.5,22.5,16.5,12.5,15,17.5,15,35,27.5,27.5,12.5,17.5,20,22.5,12.5,12.5,22.5,22.5,22.5,11.5,25,9,12.5,17.5,12.5,9,12.5,9,12.5,22.5,20,9,12.5,17.5,12.5,12.5,35,60,16.5,15,12.5,27.5,14,22.5,12.5,15,17.5,17.5,22.5,15],
+        [22.5,20,20,25,15,40,30,35,30,15,15,15,27.5,30,15,30,17.5,30,15,15,17.5,17.5,15,35,22.5,35,27.5,40,17.5,22.5,16,20,9,17.5,22.5,12.5,7,30,12.5,12.5,11.5,17.5,9,25,22.5,12.5,22.5,12.5,7,25,11,22.5,22.5,15,9,12.5,20,14,16.5,27.5,12.5,15,12.5,20,30,11.5,15,14,20,9,25],
+        [15,15,15,15,9,11.5,11.5,15,9,15,40,15,16.5,12.5,22.5,27.5,15,25,20,15,12.5,15,25,12.5,12.5,12.5,22.1,20,45,37.5,35,20,17.5,45,22.5,37.5,30,22.5,11.5,20,30,15,22.5,20,37.5,30,9,15,20,22.5,27.5,14,25,15,15,15,12.5,22.5,12.5,20,22.5,17.5,22.5,12.5,17.5,20,11.5,15,12.5,20,11,7,17.5,9,25,12.5,12.5,17.5,22.5,17.5,12.5,20,17.5,12.5,22.5,12.5,7,9,12.5,22.5,9,17.5,12.5,17.5,25,14,17.5,14,12.5,7,12.5,9,12.5,17.5,12.5,17.5,32.5,17.5,12.5,12.5,11.5,60,20,35,35,35,12.5,12.5,22.5,25,20,14,14,11.5,17.5,17.5,15,27.5,20,12.5]
+    ]);
+
+    options = {
+        title: [
+            {
+                text: '平均工资分布分析',
+                left: 'center',
+                top:10,
+                textStyle:{//文本修饰
+                    color:'white',
+                    fontSize:'20'//加不加引号均可
+                }
+            },
+            {
+//                text: 'upper: Q3 + 1.5 * IRQ \nlower: Q1 - 1.5 * IRQ',
+                borderColor: '#999',
+//                borderWidth: 1,
+                textStyle: {
+                    fontSize: 14
+                },
+                left: '10%',
+                top: '90%'
+            }
+        ],
+        tooltip: {
+            trigger: 'item',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        grid: {
+            left: '10%',
+            right: '10%',
+            bottom: '15%'
+        },
+        xAxis: {
+            type: 'category',
+            data:['BI工程师','数据可视化','前端工程师','大数据开发工程师','数据分析师'],
+            boundaryGap: true,
+            nameGap: 0,
+            splitArea: {
+                show: false
+            },
+            axisLabel: {
+               rotate:20,
+                color:'white'
+            },
+            splitLine: {
+                show: false
+            }
+        },
+        yAxis: {
+            type: 'value',
+
+            splitArea: {
+                show: true
+            },
+            axisLabel: {
+
+                color:'white'
+            },
+        },
+        series: [
+            {
+                name: 'boxplot',
+                type: 'boxplot',
+                data: data.boxData,
+                tooltip: {
+                    formatter: function (param) {
+                        return [
+                            'Experiment ' + param.name + ': ',
+                            'upper: ' + param.data[5],
+                            'Q3: ' + param.data[4],
+                            'median: ' + param.data[3],
+                            'Q1: ' + param.data[2],
+                            'lower: ' + param.data[1]
+                        ].join('<br/>')
+                    }
+                }
+            },
+            {
+                name: 'outlier',
+                type: 'scatter',
+                data: data.outliers
+            }
+        ]
+    };
+    myecharts.setOption(options)
+
+
+
+
+
+</script>
+<!--right_top-->
+<script>
+    var myColor=['#eb2100','#eb3600','#d0570e','#d0a00e','#34da62','#00e9db','#00c0e9','#0096f3'];
+    var myecharts=echarts.init(document.getElementById('right_top'));
+
+    var options= {
+        title:{
+            text:"分企业性质岗位需求分析",
+            textStyle:{//文本修饰
+                color:'white',
+                fontSize:'20'//加不加引号均可
+            },
+            left:'center',
+            top:5
+
+
+        },
+        grid: {
+            left: '11%',
+            top:'12%',
+            right: '0%',
+            bottom: '8%',
+            containLabel: true
+        },
+        xAxis: [{
+            show: false,
+        }],
+        yAxis: [{
+            axisTick:'none',
+            axisLine:'none',
+            offset:'27',
+            axisLabel: {
+                textStyle: {
+                    color: '#fff',
+                    fontSize:'16',
+                }
+            },
+            data: ['事业单位','欧美','创业公司','合资','非欧美','国企','上市公司','民营公司']
+        }, {
+            axisTick:'none',
+            axisLine:'none',
+            axisLabel: {
+                textStyle: {
+                    color: 'white',
+                    fontSize:'16',
+                }
+            },
+            data: ['112','112','112','112','112','112','112','112']
+        },{
+//            name:'单位：件',
+            nameGap:'50',
+            nameTextStyle:{
+                color:'red',
+                fontSize:'56',
+                top:50
+            },
+            axisLine:{
+                lineStyle:{
+                    color:'rgba(0,0,0,0)'
+                }
+            },
+            data: [],
+        }],
+        series: [{
+            name: '条',
+            type: 'bar',
+            yAxisIndex: 0,
+            data: [3,4,4,5,7,17,27,45],
+            label:{
+                normal:{
+                    show:true,
+                    position:'right',
+                    formatter:function(param){
+                        return param.value + '%';
+                    },
+                    textStyle:{
+                        color: '#ffffff',
+                        fontSize:'16',
+                    }
+                }
+            },
+            barWidth: 12,
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        var num=myColor.length;
+                        return myColor[params.dataIndex%num]
+                    },
+                }
+            },
+            z: 2
+        }, {
+            name: '白框',
+            type: 'bar',
+            yAxisIndex: 1,
+            barGap: '-100%',
+            data: [99,99.5,99.5,99.5,99.5,99.5,99.5,99.5],
+            barWidth: 20,
+            itemStyle: {
+                normal: {
+                    color: '#0e2147',
+                    barBorderRadius: 5,
+                }
+            },
+            z: 1
+        }, {
+            name: '外框',
+            type: 'bar',
+            yAxisIndex: 2,
+            barGap: '-100%',
+            data: [100,100,100,100,100,100,100,100],
+            barWidth: 24,
+            itemStyle: {
+                normal: {
+                    color: function(params) {
+                        var num=myColor.length;
+                        return myColor[params.dataIndex%num]
+                    },
+                    barBorderRadius: 5,
+                }
+            },
+            z: 0
+        },
+            {
+                name: '外圆',
+                type: 'scatter',
+                hoverAnimation: false,
+                data: [0,0,0,0,0,0,0,0],
+                yAxisIndex: 2,
+                symbolSize: 35,
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            var num=myColor.length;
+                            return myColor[params.dataIndex%num]
+                        },
+                        opacity: 1,
+                    }
+                },
+                z: 2
+            }]
+    };
+    myecharts.setOption(options)
+
+
+</script>
+
+<!--right_bottom-->
+<script>
+        var myecharts=echarts.init(document.getElementById('right_bottom'));
+        var data = [{
+            value: 41,
+            name: '互联网'
+        }, {
+            value: 40,
+            name: '计算机软件'
+        }, {
+            value: 6,
+            name: '金融'
+        }, {
+            value: 4,
+            name: '生物'
+        }, {
+            value: 3,
+            name: '咨询服务'
+        },
+            {
+                value: 10,
+                name: '其他'
+            }
+        ];
+        var options = {
+//            grid:{
+//              top:'-30%'
+//            },
+            title: [
+                {
+                    text: '可视化需求行业占比',
+                    left: 'center',
+                    top:-7,
+                    textStyle:{//文本修饰
+                        color:'white',
+                        fontSize:'20'//加不加引号均可
+                    }
+                },
+
+                {
+                    borderColor: '#999',
+                    textStyle: {
+                        fontSize: 14
+                    },
+                    left: '10%',
+                    top: '90%'
+                }
+            ],
+
+            tooltip: {
+                show: true,
+                trigger: 'item',
+                formatter: "{b}: {c} ({d}%)"
+            },
+//            legend: {
+//                orient: 'horizontal',
+//                bottom: '0%',
+//                data: ['<10w', '10w-50w', '50w-100w', '100w-500w', '>500w']
+//            },
+            series: [{
+                type: 'pie',
+                selectedMode: 'single',
+                radius: ['25%', '58%'],
+                color: ['#86D560', '#AF89D6', '#59ADF3', '#FF999A', '#FFCC67'],
+
+                label: {
+                    normal: {
+                        position: 'inner',
+                        formatter: '{d}%',
+
+                        textStyle: {
+                            color: '#fff',
+                            fontWeight: 'bold',
+                            fontSize: 14
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data: data
+            }, {
+                type: 'pie',
+                radius: ['58%', '83%'],
+                itemStyle: {
+                    normal: {
+                        color: '#F2F2F2'
+                    },
+                    emphasis: {
+                        color: '#ADADAD'
+                    }
+                },
+                label: {
+                    normal: {
+                        position: 'inner',
+                        formatter: '{c}家',
+                        textStyle: {
+                            color: '#777777',
+                            fontWeight: 'bold',
+                            fontSize: 14
+                        }
+                    }
+                },
+                data: data
+            }]
+        };
+        myecharts.setOption(options)
+
+</script>
+
+<!--动画背景-->
+<script>
+    var num = 200;
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    var max = 100;
+    var _x = 0;
+    var _y = 0;
+    var _z = 150;
+    var dtr = function(d) {
+        return d * Math.PI / 180;
+    };
+
+    var rnd = function() {
+        return Math.sin(Math.floor(Math.random() * 360) * Math.PI / 180);
+    };
+    var dist = function(p1, p2, p3) {
+        return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2) + Math.pow(p2.z - p1.z, 2));
+    };
+
+    var cam = {
+        obj: {
+            x: _x,
+            y: _y,
+            z: _z
+        },
+        dest: {
+            x: 0,
+            y: 0,
+            z: 1
+        },
+        dist: {
+            x: 0,
+            y: 0,
+            z: 200
+        },
+        ang: {
+            cplane: 0,
+            splane: 0,
+            ctheta: 0,
+            stheta: 0
+        },
+        zoom: 1,
+        disp: {
+            x: w / 2,
+            y: h / 2,
+            z: 0
+        },
+        upd: function() {
+            cam.dist.x = cam.dest.x - cam.obj.x;
+            cam.dist.y = cam.dest.y - cam.obj.y;
+            cam.dist.z = cam.dest.z - cam.obj.z;
+            cam.ang.cplane = -cam.dist.z / Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z);
+            cam.ang.splane = cam.dist.x / Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z);
+            cam.ang.ctheta = Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.z * cam.dist.z) / Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.y * cam.dist.y + cam.dist.z * cam.dist.z);
+            cam.ang.stheta = -cam.dist.y / Math.sqrt(cam.dist.x * cam.dist.x + cam.dist.y * cam.dist.y + cam.dist.z * cam.dist.z);
+        }
+    };
+
+    var trans = {
+        parts: {
+            sz: function(p, sz) {
+                return {
+                    x: p.x * sz.x,
+                    y: p.y * sz.y,
+                    z: p.z * sz.z
+                };
+            },
+            rot: {
+                x: function(p, rot) {
+                    return {
+                        x: p.x,
+                        y: p.y * Math.cos(dtr(rot.x)) - p.z * Math.sin(dtr(rot.x)),
+                        z: p.y * Math.sin(dtr(rot.x)) + p.z * Math.cos(dtr(rot.x))
+                    };
+                },
+                y: function(p, rot) {
+                    return {
+                        x: p.x * Math.cos(dtr(rot.y)) + p.z * Math.sin(dtr(rot.y)),
+                        y: p.y,
+                        z: -p.x * Math.sin(dtr(rot.y)) + p.z * Math.cos(dtr(rot.y))
+                    };
+                },
+                z: function(p, rot) {
+                    return {
+                        x: p.x * Math.cos(dtr(rot.z)) - p.y * Math.sin(dtr(rot.z)),
+                        y: p.x * Math.sin(dtr(rot.z)) + p.y * Math.cos(dtr(rot.z)),
+                        z: p.z
+                    };
+                }
+            },
+            pos: function(p, pos) {
+                return {
+                    x: p.x + pos.x,
+                    y: p.y + pos.y,
+                    z: p.z + pos.z
+                };
+            }
+        },
+        pov: {
+            plane: function(p) {
+                return {
+                    x: p.x * cam.ang.cplane + p.z * cam.ang.splane,
+                    y: p.y,
+                    z: p.x * -cam.ang.splane + p.z * cam.ang.cplane
+                };
+            },
+            theta: function(p) {
+                return {
+                    x: p.x,
+                    y: p.y * cam.ang.ctheta - p.z * cam.ang.stheta,
+                    z: p.y * cam.ang.stheta + p.z * cam.ang.ctheta
+                };
+            },
+            set: function(p) {
+                return {
+                    x: p.x - cam.obj.x,
+                    y: p.y - cam.obj.y,
+                    z: p.z - cam.obj.z
+                };
+            }
+        },
+        persp: function(p) {
+            return {
+                x: p.x * cam.dist.z / p.z * cam.zoom,
+                y: p.y * cam.dist.z / p.z * cam.zoom,
+                z: p.z * cam.zoom,
+                p: cam.dist.z / p.z
+            };
+        },
+        disp: function(p, disp) {
+            return {
+                x: p.x + disp.x,
+                y: -p.y + disp.y,
+                z: p.z + disp.z,
+                p: p.p
+            };
+        },
+        steps: function(_obj_, sz, rot, pos, disp) {
+            var _args = trans.parts.sz(_obj_, sz);
+            _args = trans.parts.rot.x(_args, rot);
+            _args = trans.parts.rot.y(_args, rot);
+            _args = trans.parts.rot.z(_args, rot);
+            _args = trans.parts.pos(_args, pos);
+            _args = trans.pov.plane(_args);
+            _args = trans.pov.theta(_args);
+            _args = trans.pov.set(_args);
+            _args = trans.persp(_args);
+            _args = trans.disp(_args, disp);
+            return _args;
+        }
+    };
+
+    (function() {
+        "use strict";
+        var threeD = function(param) {
+            this.transIn = {};
+            this.transOut = {};
+            this.transIn.vtx = (param.vtx);
+            this.transIn.sz = (param.sz);
+            this.transIn.rot = (param.rot);
+            this.transIn.pos = (param.pos);
+        };
+
+        threeD.prototype.vupd = function() {
+            this.transOut = trans.steps(
+
+                    this.transIn.vtx,
+                    this.transIn.sz,
+                    this.transIn.rot,
+                    this.transIn.pos,
+                    cam.disp
+            );
+        };
+
+        var Build = function() {
+            this.vel = 0.04;
+            this.lim = 360;
+            this.diff = 200;
+            this.initPos = 100;
+            this.toX = _x;
+            this.toY = _y;
+            this.go();
+        };
+
+        Build.prototype.go = function() {
+            this.canvas = document.getElementById("canv");
+            this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
+            this.$ = canv.getContext("2d");
+            this.$.globalCompositeOperation = 'source-over';
+            this.varr = [];
+            this.dist = [];
+            this.calc = [];
+
+            for (var i = 0, len = num; i < len; i++) {
+                this.add();
+            }
+
+            this.rotObj = {
+                x: 0,
+                y: 0,
+                z: 0
+            };
+            this.objSz = {
+                x: w / 5,
+                y: h / 5,
+                z: w / 5
+            };
+        };
+
+        Build.prototype.add = function() {
+            this.varr.push(new threeD({
+                vtx: {
+                    x: rnd(),
+                    y: rnd(),
+                    z: rnd()
+                },
+                sz: {
+                    x: 0,
+                    y: 0,
+                    z: 0
+                },
+                rot: {
+                    x: 20,
+                    y: -20,
+                    z: 0
+                },
+                pos: {
+                    x: this.diff * Math.sin(360 * Math.random() * Math.PI / 180),
+                    y: this.diff * Math.sin(360 * Math.random() * Math.PI / 180),
+                    z: this.diff * Math.sin(360 * Math.random() * Math.PI / 180)
+                }
+            }));
+            this.calc.push({
+                x: 360 * Math.random(),
+                y: 360 * Math.random(),
+                z: 360 * Math.random()
+            });
+        };
+
+        Build.prototype.upd = function() {
+            cam.obj.x += (this.toX - cam.obj.x) * 0.05;
+            cam.obj.y += (this.toY - cam.obj.y) * 0.05;
+        };
+
+        Build.prototype.draw = function() {
+            this.$.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            cam.upd();
+            this.rotObj.x += 0.1;
+            this.rotObj.y += 0.1;
+            this.rotObj.z += 0.1;
+
+            for (var i = 0; i < this.varr.length; i++) {
+                for (var val in this.calc[i]) {
+                    if (this.calc[i].hasOwnProperty(val)) {
+                        this.calc[i][val] += this.vel;
+                        if (this.calc[i][val] > this.lim) this.calc[i][val] = 0;
+                    }
+                }
+
+                this.varr[i].transIn.pos = {
+                    x: this.diff * Math.cos(this.calc[i].x * Math.PI / 180),
+                    y: this.diff * Math.sin(this.calc[i].y * Math.PI / 180),
+                    z: this.diff * Math.sin(this.calc[i].z * Math.PI / 180)
+                };
+                this.varr[i].transIn.rot = this.rotObj;
+                this.varr[i].transIn.sz = this.objSz;
+                this.varr[i].vupd();
+                if (this.varr[i].transOut.p < 0) continue;
+                var g = this.$.createRadialGradient(this.varr[i].transOut.x, this.varr[i].transOut.y, this.varr[i].transOut.p, this.varr[i].transOut.x, this.varr[i].transOut.y, this.varr[i].transOut.p * 2);
+                this.$.globalCompositeOperation = 'lighter';
+                g.addColorStop(0, 'hsla(255, 255%, 255%, 1)');
+                g.addColorStop(.5, 'hsla(' + (i + 2) + ',85%, 40%,1)');
+                g.addColorStop(1, 'hsla(' + (i) + ',85%, 40%,.5)');
+                this.$.fillStyle = g;
+                this.$.beginPath();
+                this.$.arc(this.varr[i].transOut.x, this.varr[i].transOut.y, this.varr[i].transOut.p * 2, 0, Math.PI * 2, false);
+                this.$.fill();
+                this.$.closePath();
+            }
+        };
+        Build.prototype.anim = function() {
+            window.requestAnimationFrame = (function() {
+                return window.requestAnimationFrame ||
+                        function(callback, element) {
+                            window.setTimeout(callback, 1000 / 60);
+                        };
+            })();
+            var anim = function() {
+                this.upd();
+                this.draw();
+                window.requestAnimationFrame(anim);
+            }.bind(this);
+            window.requestAnimationFrame(anim);
+        };
+
+        Build.prototype.run = function() {
+            this.anim();
+
+            window.addEventListener('mousemove', function(e) {
+                this.toX = (e.clientX - this.canvas.width / 2) * -0.8;
+                this.toY = (e.clientY - this.canvas.height / 2) * 0.8;
+            }.bind(this));
+            window.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                this.toX = (e.touches[0].clientX - this.canvas.width / 2) * -0.8;
+                this.toY = (e.touches[0].clientY - this.canvas.height / 2) * 0.8;
+            }.bind(this));
+            window.addEventListener('mousedown', function(e) {
+                for (var i = 0; i < 100; i++) {
+                    this.add();
+                }
+            }.bind(this));
+            window.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                for (var i = 0; i < 100; i++) {
+                    this.add();
+                }
+            }.bind(this));
+        };
+        var app = new Build();
+        app.run();
+    })();
+    window.addEventListener('resize', function() {
+        canvas.width = w = window.innerWidth;
+        canvas.height = h = window.innerHeight;
+    }, false);
+</script>

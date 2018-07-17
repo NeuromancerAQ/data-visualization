@@ -1,0 +1,118 @@
+/*-----------公共样式-------------*/
+*{  margin: 0;  padding: 0; box-sizing: border-box;  }
+li{  list-style: none;  }
+a{  text-decoration:none;  }
+
+/*------------box3-------------*/
+#box3{
+    position:fixed;
+    width: 100%;
+    height: 100%;
+    background: url("../images/bg.png") no-repeat center;
+    background-size: cover;
+}
+/*----------box3:head-------------*/
+#box3 #b3_head{
+    height: 140px;
+    width: 100%;
+    text-align: center;
+    background: url("../images/head1.gif") no-repeat center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    box-sizing: border-box;
+    padding-top: 20px;
+    color:#fff;
+    font-size: 22px;
+}
+#box3 #b3_head a{
+    color:white
+}
+#box3 .content{
+    position: absolute;
+    top: 90px;
+    width: 100%;
+    height: 90%;
+    padding:1%;
+}
+#box3 .content .content_left{
+    width: 29%;
+    height: 94%;
+    /*border-radius: 5px;*/
+    float: left;
+
+}
+#box3_left_t{
+    width: 100%;
+    height: 49%;
+    border: 1px solid #04f1f6;
+    /*border-radius: 5px;*/
+}
+#box3_left_b{
+    width: 100%;
+    height: 49%;
+    border: 1px solid #04f1f6;
+    /*border-radius: 5px;*/
+    margin-top: 3%;
+}
+#content_center{
+    width: 41%;
+    height: 94%;
+    /*border-radius: 5px;*/
+    float: left;
+    margin-left: 4px;
+}
+#center_map{
+    width: 100%;
+    height: 62%;
+    border: 1px solid #04f1f6;
+    /*border-radius: 5px;*/
+}
+#center_pie{
+    width: 100%;
+    height: 36%;
+    border: 1px solid #04f1f6;
+    /*border-radius: 5px;*/
+    margin-top: 2%;
+}
+
+
+/*-------------box3:右边div样式--------------*/
+#box3 .content .content_right{
+    width: 29%;
+    height: 94%;
+    /*border-radius: 5px;*/
+    float: left;
+    margin-left: 4px;
+}
+#box3_right_t{
+    position: relative;
+    width: 100%;
+    height: 49%;
+    border: 1px solid #04f1f6;
+    /*border-radius: 5px;*/
+}
+#top_1{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#top_2{
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#top_3{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+#box3_right_b{
+    width: 100%;
+    height: 49%;
+    border: 1px solid #04f1f6;
+    /*border-radius: 5px;*/
+    margin-top: 3%;
+}
+
+

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/china.js"></script>
+    <script src="js/sichuan.js"></script>
+    <script src="js/guizhou.js"></script>
+    <script src="js/chongqing.js"></script>
+    <script src="js/jquery-3.1.0.js"></script>
+    <style>
+        *{  margin: 0;padding: 0;  }
+        #bg{width: 100%;height: 768px;background:url("images/bg2.jpg");background-size: cover;position: fixed}
+        #head_bg{width: 100%;height:100px;background: url("images/head.jpg")center}
+        .head_con a{color: white;font-size: 30px;text-align: center;line-height: 100px;display: block;text-decoration: none}
+        #left{width: 26%;height: 660px;border: 1px solid #04f1f6;border-radius:10px;float: left}
+        #center{width: 41%;height:660px;border: 1px solid #04f1f6;float: left;margin:0 3%;border-radius:10px}
+        #right{width: 26%;height: 660px;border: 1px solid #04f1f6;float: right;border-radius:10px}
+        #right_top{width: 95%;height: 50%;border-bottom: 2px solid #04f1f6;margin: 0 auto}
+        #center_top{width: 95%;height: 60%;border-bottom: 2px solid #04f1f6;margin: 0 auto;}
+        #left_top{width: 95%;height: 50%;border-bottom: 2px solid #04f1f6;margin: 0 auto;}
+        #center_bottom{width: 95%;height: 40%;margin: 5% 0 auto;background: url("images/rightbg.png")center no-repeat;background-size: 98%;color: white;text-align: center}
+        #left_bottom{width: 95%;height: 48%;margin: 0 auto;}
+        #right_bottom{width: 95%;height: 48%;margin: 0 auto;}
+    </style>
+</head>
+<body>
+<div id="bg">
+    <div id="head_bg">
+        <div class="head_con">
+            <a href="../project.html">
+                西南片区大数据可视化岗位需求分析
+            </a>
+            </div>
+    </div>
+    <div id="left">
+        <div id="left_top"></div>
+        <div id="left_bottom"></div>
+    </div>
+    <div id="center">
+        <div id="center_top" ></div>
+        <div id="center_bottom" ></div>
+    </div>
+    <div id="right">
+        <div id="right_top"></div>
+        <div id="right_bottom"></div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var t=5000;
+    function hangye(){
+        var dataInfo={
+            pindata:[
+                {value:45.4, name:'金融行业'},
+                {value:17.6, name:'零售行业'},
+                {value:13.4, name:'医疗行业'},
+                {value:9.2, name:'电商行业'},
+                {value:4.1, name:'政府单位'},
+                {value:2.6, name:'房地产'},
+                {value:7.7, name:'其他'}
+            ],
+            lengdata:['金融行业',	'零售行业',	'医疗行业',	'电商行业',	'政府单位',	'房地产',	'其他']
+        };
+
+            var myecharts=echarts.init(document.getElementById('right_top'));
+            var options= {
+                title: {
+                    text: '可视化分析在各行业的应用',
+                    textStyle:{
+                        color:"white"
+                    },
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+                color:["#FFCCCC","#CCFFFF","#FFCC99","#CCCCFF","#FFFF66","#FF9966","#CC9966"],
+                legend: {
+                    orient: 'horizontal',
+                    x: 'left',
+                    bottom: 10,
+                    left: 'center',
+                    data:dataInfo.lengdata,
+                    textStyle:{
+                        color:"white"
+                    }
+
+                },
+                series: [
+                    {
+                        name:'',
+                        type:'pie',
+                        radius: ['40%', '60%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center',
+
+                            },
+
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '18',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false,
+
+                            }
+                        },
+                        data:dataInfo.pindata
+                    }
+                ]
+            };
+        myecharts.setOption(options)
+        setTimeout(jiuye,t)
+    }
+    function jiuye(){
+        var myecharts=echarts.init(document.getElementById('right_top'));
+        var options={
+            title : {
+                text: '主要就业城市',
+                x:'center'
+            },
+            legend: {
+                x : 'center',
+                y : 'bottom',
+                data:['北京', '深圳', '广州', '上海', '成都']
+            },
+            series : [
+                {
+                    name:'主要就业城市',
+                    type:'pie',
+                    radius : [20, 110],
+                    center : ['50%', '50%'],
+                    roseType : 'radius',
+                    label: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    lableLine: {
+                        normal: {
+                            show: false
+                        },
+                        emphasis: {
+                            show: true
+                        }
+                    },
+                    data:[
+                        {value:47, name:'北京'},
+                        {value:23, name:'深圳'},
+                        {value:16, name:'广州'},
+                        {value:15, name:'上海'},
+                        {value:12, name:'成都'}
+                    ]
+                }
+
+            ]
+        };
+        myecharts.setOption(options);
+        setTimeout(hangye,t);
+    }
+    hangye();
+</script>
+<script>
+    var t=5000;
+    function quanguo1(){
+        var myecharts=echarts.init(document.getElementById('left_bottom'));
+        var options={
+            title : {
+                text:"全国职位经验要求",
+                x:'center',
+                textStyle:{
+                    color:"white"
+                }
+            },
+            color:["#FFCCCC","#CCFFFF","#FFCC99","#CCCCFF","#FFFF66"],
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'horizontal',
+                x: 'left',
+                bottom: 0,
+                left: 'center',
+                data: ['1-3年','3-5年','经验不限','5-10年','10年以上'],
+                textStyle:{
+                    color:"white"
+                }
+            },
+            series : [
+                {
+                    name: '经验要求',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:[{value: 1330, name: '1-3年'}, {value: 1586, name: '3-5年'}, {value: 941, name: '经验不限'}, {value: 437, name: '5-10年'}, {value: 12, name: '10年以上'}]
+                }
+            ]
+        };
+            myecharts.setOption(options);
+        setTimeout(sichuan1,t);
+        }
+    function sichuan1(){
+        var myecharts=echarts.init(document.getElementById('left_bottom'));
+        console.log(t);
+        var options={
+            title : {
+                text:"四川职位经验要求",
+                x:'center',
+                textStyle:{
+                    color:"white"
+                }
+            },
+            color:["#FFCCCC","#CCFFFF","#FFCC99","#CCCCFF","#FFFF66"],
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'horizontal',
+                x: 'left',
+                bottom: 0,
+                left: 'center',
+                data: ['1-3年','3-5年','经验不限','5-10年','10年以上'],
+                textStyle:{
+                    color:"white"
+                }
+            },
+            series : [
+                {
+                    name: '经验要求',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:[{value: 73, name: '1-3年'}, {value: 63, name: '3-5年'}, {value: 63, name: '经验不限'}, {value: 22, name: '5-10年'}, {value: 12, name: '10年以上'}]
+                }
+            ]
+        };
+        myecharts.setOption(options);
+        setTimeout(guizhou1,t);
+    }
+    function guizhou1(){
+        var myecharts=echarts.init(document.getElementById('left_bottom'));
+        var options={
+            title : {
+                text:"贵州职位经验要求",
+                x:'center',
+                textStyle:{
+                    color:"white"
+                }
+            },
+            color:["#FFCCCC","#CCFFFF","#FFCC99","#CCCCFF","#FFFF66"],
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'horizontal',
+                x: 'left',
+                bottom: 0,
+                left: 'center',
+                data: ['1-3年','3-5年','经验不限','5-10年','10年以上'],
+                textStyle:{
+                    color:"white"
+                }
+            },
+            series : [
+                {
+                    name: '经验要求',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:[{value: 54, name: '1-3年'}, {value: 32, name: '3-5年'}, {value: 25, name: '经验不限'}, {value: 10, name: '5-10年'}, {value: 0, name: '10年以上'}]
+                }
+            ]
+        };
+        myecharts.setOption(options);
+        setTimeout(chongqing1,t);
+    }
+    function chongqing1(){
+        var myecharts=echarts.init(document.getElementById('left_bottom'));
+        var options={
+            title : {
+                text:"重庆职位经验要求",
+                x:'center',
+                textStyle:{
+                    color:"white"
+                }
+            },
+            color:["#FFCCCC","#CCFFFF","#FFCC99","#CCCCFF","#FFFF66"],
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'horizontal',
+                x: 'left',
+                bottom: 0,
+                left: 'center',
+                data: ['1-3年','3-5年','经验不限','5-10年','10年以上'],
+                textStyle:{
+                    color:"white"
+                }
+            },
+            series : [
+                {
+                    name: '经验要求',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '50%'],
+                    data:[{value:35, name: '1-3年'}, {value: 21, name: '3-5年'}, {value: 13, name: '经验不限'}, {value:5, name: '5-10年'}, {value: 0, name: '10年以上'}]
+                }
+            ]
+        };
+        myecharts.setOption(options);
+        setTimeout(quanguo1,t)
+    }
+    quanguo1();
+</script>
+<script>
+    var t=5000;
+    function quanguo(){
+        var myecharts=echarts.init(document.getElementById('center_top'));
+        var options={
+            title: {
+                text: '全国职位分布',
+                left: 'center',
+                textStyle:{
+                    color:"white"
+                }
+            },
+            textStyle:{
+                color:"white"
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                textStyle:{
+                    color:"white"
+                },
+                data:['岗位需求']
+            },
+            visualMap: {
+                min: 0,
+                max: 1500,
+                text:['High','Low'],
+                realtime: false,
+                calculable: true,
+                inRange: {
+                    color: ['white','red']
+                },
+                textStyle:{
+                    color:"white"
+                }
+            },
+            series: [
+                {
+                    name: '',
+                    type: 'map',
+                    mapType: 'china',
+                    showLegendSymbol: false,
+                    data:[
+                        {name: '北京',value: 1985 },
+                        {name: '江苏',value: 269 },
+                        {name: '广东',value: 804 },
+                        {name: '山东',value: 260 },
+                        {name: '浙江',value: 483 },
+                        {name: '河北',value: 140 },
+                        {name: '上海',value: 1188 },
+                        {name: '辽宁',value: 78 },
+                        {name: '四川',value: 360 },
+                        {name: '河南',value: 112 },
+                        {name: '天津',value: 150 },
+                        {name: '黑龙江',value: 30 },
+                        {name: '湖北',value: 146 },
+                        {name: '山西',value: 10},
+                        {name: '陕西',value: 34 },
+                        {name: '江西',value: 5 },
+                        {name: '安徽',value: 30 },
+                        {name: '福建',value: 41 },
+                        {name: '湖南',value: 32 },
+                        {name: '新疆',value: 2 },
+                        {name: '内蒙古',value: 1 },
+                        {name: '重庆',value: 130 },
+                        {name: '吉林',value: 5 },
+                        {name: '甘肃',value: 4 },
+                        {name: '宁夏',value: 2 },
+                        {name: '云南',value: 5 },
+                        {name: '贵州',value: 230 },
+                        {name: '广西',value: 15 },
+                        {name: '青海',value: 0 },
+                        {name: '海南',value: 0 },
+                        {name: '澳门',value: 0 },
+                        {name: '西藏',value: 0 },
+                        {name: '台湾',value: 0 },
+                        {name: '香港',value: 0 }
+                    ]
+                }
+            ]
+        };
+        myecharts.setOption(options);
+        setTimeout(sichuan,t);
+    }
+    function sichuan(){
+        var myecharts=echarts.init(document.getElementById('center_top'));
+        var options={
+            title: {
+                text: '四川职位分布',
+                left: 'center',
+                textStyle:{
+                    color:"white"
+                }
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data:['岗位需求']
+            },
+            visualMap: {
+                min: 0,
+                max: 400,
+                text:['High','Low'],
+                realtime: false,
+                calculable: true,
+                inRange: {
+                    color: ['white','red']
+                },
+                textStyle:{
+                    color:"white"
+                }
+
+            },
+            series: [
+                {
+                    name: '',
+                    type: 'map',
+                    mapType: '四川',
+                    showLegendSymbol: false,
+                    data:[{name:"成都市",value:340},
+                        {name:"绵阳市",value:20},
+                        {name:"自贡市",value:0},
+                        {name:"乐山市",value:0},
+                        {name:"眉山市",value:0},
+                        {name:"都江堰市",value:0},
+                        {name:"雅安市",value:0},
+                        {name:"广安市",value:0},
+                        {name:"攀枝花市",value:0},
+                        {name:"泸州市",value:0},
+                        {name:"德阳市",value:0},
+                        {name:"广元市",value:0},
+                        {name:"遂宁市",value:0},
+                        {name:"内江市",value:0},
+                        {name:"南充市",value:0},
+                        {name:"宜宾市",value:0},
+                        {name:"达州市",value:0},
+                        {name:"达州市",value:0},
+                        {name:"巴中市",value:0},
+                        {name:"资阳市",value:0},
+                        {name:"阿坝藏族羌族自治州",value:0},
+                        {name:"甘孜藏族自治州",value:0},
+                        {name:"凉山彝族自治州",value:0}
+                    ]
+                }
+            ]
+        };
+        myecharts.setOption(options);
+        setTimeout(guizhou,t);
+    }
+    function guizhou(){
+        var myecharts=echarts.init(document.getElementById('center_top'));
+        var options={
+            title: {
+                text: '贵州职位分布',
+                left: 'center',
+                textStyle:{
+                    color:"white"
+                }
+            },
+
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data:['岗位需求'],
+                textStyle:{
+                    color:"white"
+                }
+            },
+            visualMap: {
+                min: 0,
+                max: 250,
+                text:['High','Low'],
+                realtime: false,
+                calculable: true,
+                inRange: {
+                    color: ['white','red']
+                },
+                textStyle:{
+                    color:"white"
+                }
+
+            },
+            series: [
+                {
+                    name: '',
+                    type: 'map',
+                    mapType: '贵州',
+                    showLegendSymbol: false,
+                    data:[{name:"贵阳市",value:230},
+                        {name:"六盘水市",value:0},
+                        {name:"遵义市",value:0},
+                        {name:"安顺市",value:0},
+                        {name:"铜仁市",value:0},
+                        {name:"黔西南布依族苗族自治州",value:0},
+                        {name:"毕节市",value:0},
+                        {name:"黔东南苗族侗族自治州",value:0},
+                        {name:"黔南布依族苗族自治州",value:0}
+                    ]
+                }
+            ]
+        };
+        myecharts.setOption(options);
+        setTimeout(chongqing,t);
+    }
+    function chongqing(){
+        var myecharts=echarts.init(document.getElementById('center_top'));
+        var options={
+            title: {
+                text: '重庆职位分布',
+                left: 'center',
+                textStyle:{
+                    color:"white"
+                }
+            },
+
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data:['岗位需求']
+
+            },
+            visualMap: {
+                min: 0,
+                max: 200,
+                text:['High','Low'],
+                realtime: false,
+                calculable: true,
+                inRange: {
+                    color: ['white','red']
+                },
+                textStyle:{
+                    color:"white"
+                }
+
+            },
+            series: [
+                {
+                    name: '',
+                    type: 'map',
+                    mapType: '重庆',
+                    showLegendSymbol: false,
+                    data:[{name:"万州区",value:100},
+                        {name:"涪陵区",value:20},
+                        {name:"大渡口区",value:10},
+                        {name:"江北区",value:0},
+                        {name:"沙坪坝区",value:0},
+                        {name:"九龙坡区",value:0},
+                        {name:"北碚区",value:0},
+                        {name:"綦江区",value:0},
+                        {name:"大足区",value:0},
+                        {name:"渝北区",value:0},
+                        {name:"巴南区",value:0},
+                        {name:"黔江区",value:0},
+                        {name:"长寿区",value:0},
+                        {name:"江津区",value:0},
+                        {name:"合川区",value:0},
+                        {name:"永川区",value:0},
+                        {name:"南川区",value:0},
+                        {name:"潼南区",value:0},
+                        {name:"铜梁区",value:0},
+                        {name:"荣昌区",value:0},
+                        {name:"璧山区",value:0},
+                        {name:"梁平县",value:0},
+                        {name:"城口县",value:0},
+                        {name:"丰都县",value:0},
+                        {name:"垫江县",value:0},
+                        {name:"武隆县",value:0},
+                        {name:"忠县",value:0},
+                        {name:"开县",value:0},
+                        {name:"云阳县",value:0},
+                        {name:"奉节县",value:0},
+                        {name:"巫山县",value:0},
+                        {name:"巫溪县",value:0},
+                        {name:"石柱土家族自治县",value:0},
+                        {name:"秀山土家族苗族自治县",value:0},
+                        {name:"酉阳土家族苗族自治县",value:0},
+                        {name:"彭水苗族土家族自治县",value:0}
+                    ]
+                }
+            ]
+        };
+        myecharts.setOption(options);
+        setTimeout(quanguo,t);
+    }
+    quanguo();
+</script>
+<script>
+    function xueli(){
+        var myecharts=echarts.init(document.getElementById('left_top'));
+        var options={
+            title: {
+                text: '对学历的要求',
+                textStyle:{
+                    color:"white"
+                },
+                left: 'center'
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            yAxis: [{
+                splitLine: {show: false},
+                type: 'category',
+                data: ['本科','大专','学历不限',"硕士","博士"],
+                inverse: true,
+                axisTick: {
+                    alignWithLabel: true
+                },
+                axisLabel: {
+                    margin: 10,
+                    textStyle: {
+                        fontSize: 12,
+                        color:'white'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'white'
+                    }
+                }
+            }],
+            xAxis: [{
+                type: 'value',
+                axisLabel: {
+                    margin: 10,
+                    textStyle: {
+                        fontSize: 12,
+                        color:'white'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'white'
+                    }
+                },
+                splitLine: {
+                    show:false,
+                    lineStyle: {
+                        color: 'white'
+                    }
+                }
+            }],
+            series: [{
+                name: 'Top 10',
+                type: 'bar',
+                barWidth:26,
+                data: [210,64,20,13],
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'insideRight',
+                        textStyle: {
+                            color: 'white' //color of value
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+                            offset: 0,
+                            color: '#0590eb' // 0% 处的颜色
+                        }, {
+                            offset: 1,
+                            color: '#08e3f1' // 100% 处的颜色
+                        }], false),
+                        barBorderRadius: [0, 15,15, 0],
+                        shadowColor: 'rgba(0,0,0,0.1)',
+                        shadowBlur: 3,
+                        shadowOffsetY: 3
+                    }
+                }
+            }]
+        };
+        myecharts.setOption(options);
+    }
+    function xinzi(){
+        var myecharts=echarts.init(document.getElementById('left_top'));
+        var dataStyle = {
+            normal: {
+                label: {show:false},
+                labelLine: {show:false},
+                shadowBlur: 40,
+                shadowColor: 'rgba(40, 40, 40, 0.5)',
+            }
+        };
+        var placeHolderStyle = {
+            normal : {
+                color: 'rgba(0,0,0,0)',
+                label: {show:false},
+                labelLine: {show:false}
+            },
+            emphasis : {
+                color: 'rgba(0,0,0,0)'
+            }
+        };
+        var options = {
+            title: {
+                text: '就业薪资',
+                textStyle:{
+                    color:"white"
+                },
+                left: 'center'
+            },
+            color: ['#f54d4d', '#f87544','#ffae00', '#dcff00'],
+            legend: {
+                textStyle:{
+                    color:"white"
+                },
+                itemGap:8,
+                top: '87%',
+                data:['年薪20w','15k-18k','12k-15k','8k-12k']
+            },
+            series : [
+                {
+                    name:'年薪20w',
+                    type:'pie',
+                    clockWise:false,
+                    radius : [100,120],
+                    itemStyle : dataStyle,
+                    hoverAnimation: false,
+                    data:[
+                        {
+                            value:300,
+                            name:'01'
+                        },
+                        {
+                            value:50,
+                            name:'invisible',
+                            itemStyle : placeHolderStyle
+                        }
+
+                    ]
+                },
+                {
+                    name:'15k-18k',
+                    type:'pie',
+                    clockWise:false,
+                    radius : [80, 100],
+                    itemStyle : dataStyle,
+                    hoverAnimation: false,
+
+                    data:[
+                        {
+                            value:150,
+                            name:'02'
+                        },
+                        {
+                            value:60,
+                            name:'invisible',
+                            itemStyle : placeHolderStyle
+                        }
+                    ]
+                },
+                {
+                    name:'12k-15k',
+                    type:'pie',
+                    clockWise:false,
+                    hoverAnimation: false,
+                    radius : [60, 80],
+                    itemStyle : dataStyle,
+                    data:[
+                        {
+                            value:80,
+                            name:'03'
+                        },
+                        {
+                            value:50,
+                            name:'invisible',
+                            itemStyle : placeHolderStyle
+                        }
+                    ]
+                },
+                {
+                    name:'8k-12k',
+                    type:'pie',
+                    clockWise:false,
+                    hoverAnimation: false,
+                    radius : [40, 60],
+                    itemStyle : dataStyle,
+                    data:[
+                        {
+                            value:45,
+                            name:'04'
+                        },
+                        {
+                            value:30,
+                            name:'invisible',
+                            itemStyle : placeHolderStyle
+                        }
+                    ]
+                }
+            ]
+        };
+        myecharts.setOption(options);
+    }
+    xueli()
+</script>
+<script>
+    function zhuxian(){
+        var dataInfo={
+            category:["2014年","2015年","2016年","2017年","2018年"],
+            lineData:[2200,3300,4400,5600,8000],
+            barData:[1000,2000,3000,5000,7000]
+        };
+        var myecharts=echarts.init(document.getElementById('right_bottom'));
+        var options= {
+            title: {
+                text: '大数据市场规模',
+                textStyle:{
+                    color:"white"
+                },
+                left: 'center'
+            },
+            grid:{
+                x:"15%",
+            },
+            legend: {
+                bottom:0,
+                data: ['同比增长', '市场规模'],
+                textStyle: {
+                    color: '#ccc'
+                }
+            },
+            xAxis: {
+                data: dataInfo.category,
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                }
+            },
+            yAxis: [
+                {
+                splitLine: {show: false},
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc'
+                    }
+                }
+            }],
+            series: [{
+                name: '同比增长',
+                type: 'line',
+                smooth: true,
+                showAllSymbol: true,
+                symbol: 'emptyCircle',
+                symbolSize: 15,
+                data: dataInfo.lineData
+            },
+                {
+                name: '市场规模',
+                type: 'bar',
+                barWidth: 10,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: 5,
+                        color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#14c8d4'},
+                                    {offset: 1, color: '#43eec6'}
+                                ]
+                        )
+                    }
+                },
+                data: dataInfo.barData
+            },
+
+                ]
+        };
+        myecharts.setOption(options);
+    }
+    zhuxian();
+</script>
